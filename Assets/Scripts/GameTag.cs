@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public static class GameTag
 {
     public const string Player = "Player";
@@ -6,4 +8,7 @@ public static class GameTag
     public const string Respawn = "Respawn";
     public const string MainCamera = "MainCamera";
     public const string Environment = "Environment";
+
+    public static bool IsPlayer(GameObject gameObject)
+        => gameObject.CompareTag(Player) || gameObject.CompareTag(PlayerItem);
 }

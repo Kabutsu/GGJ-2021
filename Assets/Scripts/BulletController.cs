@@ -23,7 +23,7 @@ public class BulletController : MonoBehaviour
             other.gameObject.GetComponent<EnemyController>().Shot(Damage);
         }
 
-        if (!(other.gameObject.CompareTag(GameTag.Player) || other.gameObject.CompareTag(GameTag.PlayerItem)))
+        if (!GameTag.IsPlayer(other.gameObject))
         {
             Destroy(gameObject);
         }
