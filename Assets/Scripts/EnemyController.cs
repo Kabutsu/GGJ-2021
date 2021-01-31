@@ -1,25 +1,28 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using Assets.Scripts.Helpers;
 
 public class EnemyController : MonoBehaviour
 {
-    public Transform Goal;
     public float Health = 50f;
     public float AttackDamage = 7.5f;
     public float RateOfAttack = 0.5f;
 
+    private Transform goal;
     private NavMeshAgent agent;
     private float cooldown;
 
     void Start()
     {
+        goal = FindObjectsOfType<PlayerManager>().FirstOrDefault().gameObject.transform;
         agent = GetComponent<NavMeshAgent>();
         cooldown = 1f / (RateOfAttack * 2f);
     }
 
     void Update()
     {
-        agent.destination = Goal.position;
+        agent.destination = goal.position;
     }
 
     public void Shot(float damage)
