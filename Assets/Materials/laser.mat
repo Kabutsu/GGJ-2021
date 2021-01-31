@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: shot_mat
+  m_Name: laser
   m_Shader: {fileID: 4800000, guid: 2d9a4ca4b2730b64e8aade7030f8caeb, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -62,7 +62,7 @@ Material:
     - _DstBlend: 0
     - _Glossiness: 0.5
     - _LightSaberFactor: 0.9
-    - _LineScale: 1
+    - _LineScale: 0.008333
     - _LineWidth: 70
     - _Metallic: 0
     - _Mode: 0

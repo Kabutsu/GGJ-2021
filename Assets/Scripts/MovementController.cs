@@ -3,6 +3,7 @@ using UnityEngine;
 public class MovementController : MonoBehaviour
 {
     public float MovementSpeed = 10f;
+    public Rigidbody m_Rigidbody;
 
     void Start()
     {
@@ -17,8 +18,8 @@ public class MovementController : MonoBehaviour
         Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
 
-        transform.position += new Vector3(hTranslate, 0, vTranslate);
-        Camera.main.transform.position += new Vector3(hTranslate, 0, vTranslate);
+        transform.Translate(hTranslate, vTranslate, 0, Camera.main.transform);
+        Camera.main.transform.position = new Vector3(transform.position.x, Camera.main.transform.position.y, transform.position.z);
 
         if (groundPlane.Raycast(cameraRay, out float rayLength))
         {
