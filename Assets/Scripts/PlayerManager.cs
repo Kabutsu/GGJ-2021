@@ -1,14 +1,18 @@
+using Assets.Scripts.Helpers;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
     public float Health = 50f;
-    public Text HealthText;
+
+    private Text healthText;
 
     void Start()
     {
-        HealthText.text = Health.ToString();
+        healthText = FindObjectsOfType<Text>().FirstOrDefault(x => x.gameObject.name == UserInterface.PlayerHealth);
+        healthText.text = Health.ToString();
     }
 
     void Update()
@@ -19,6 +23,6 @@ public class PlayerManager : MonoBehaviour
     public void WasHit(float Damage)
     {
         Health -= Damage;
-        HealthText.text = Health.ToString();
+        healthText.text = Health.ToString();
     }
 }

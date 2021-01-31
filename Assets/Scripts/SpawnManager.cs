@@ -1,4 +1,5 @@
 using UnityEngine;
+using Assets.Scripts.Helpers;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -12,7 +13,14 @@ public class SpawnManager : MonoBehaviour
 
     void Start()
     {
-        ResetCooldown();
+        if (IsPlayerSpawn)
+        {
+            Instantiate(SpawnObject, transform.position, transform.rotation);
+        } else
+        {
+            ResetCooldown();
+        }
+
         canCooldown = !IsPlayerSpawn;
     }
 

@@ -1,6 +1,7 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using Assets.Scripts.Helpers;
 
 public class EnemyController : MonoBehaviour
 {
