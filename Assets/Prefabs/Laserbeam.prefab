@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6871446292475454068}
   - component: {fileID: 6871446292475076338}
   - component: {fileID: 6098975971883550566}
+  - component: {fileID: -750511973788470243}
   m_Layer: 0
   m_Name: Laserbeam
   m_TagString: Untagged
@@ -177,5 +178,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c7077528a5ad64dab2d30f22ded2e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Damage: 10
   MovementSpeed: 30
   Lifetime: 2
+--- !u!136 &-750511973788470243
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6871446292481041502}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}

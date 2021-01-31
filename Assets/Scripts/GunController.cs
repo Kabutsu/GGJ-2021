@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ShootController : MonoBehaviour
+public class GunController : MonoBehaviour
 {
     public GameObject Bullet;
     public float RateOfFire = 2f;
