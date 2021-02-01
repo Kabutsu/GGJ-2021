@@ -125,5 +125,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 50
-  ExplosionRadius: 2.5
+  MinExplosionRadius: 2.5
+  MaxExplosionRadius: 7.5
   ExplosionDamage: 20
