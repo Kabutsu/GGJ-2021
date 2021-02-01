@@ -51,8 +51,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 50
-  AttackDamage: 7.5
-  RateOfAttack: 0.5
+  AttackDamage: 5
+  RateOfAttack: 0.25
 --- !u!136 &4183474113862501429
 CapsuleCollider:
   m_ObjectHideFlags: 0
