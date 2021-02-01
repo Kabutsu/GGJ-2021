@@ -21,9 +21,12 @@ public class BulletController : MonoBehaviour
     {
         if (GameTag.IsWorldItem(other.gameObject))
         {
-            if (other.gameObject.CompareTag(GameTag.Enemy))
+            if (other.gameObject.TryGetComponent<EnemyController>(out var enemy))
             {
-                other.gameObject.GetComponent<EnemyController>().Shot(Damage);
+                enemy.Shot(Damage);
+            } else if (other.gameObject.TryGetComponent<BarrelController>(out var barrel))
+            {
+                barrel.Hit(Damage);
             }
 
             Destroy(gameObject);

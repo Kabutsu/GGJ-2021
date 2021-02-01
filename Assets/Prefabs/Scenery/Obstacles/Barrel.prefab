@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7169686131803826545}
   - component: {fileID: 2389923266599588637}
   - component: {fileID: -2013183961245648965}
+  - component: {fileID: -903425155577006895}
   m_Layer: 0
   m_Name: Barrel
   m_TagString: Scenery
@@ -111,3 +112,18 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &-903425155577006895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7803467458934008031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2467f6f4396cd5646828c6b1e1ac46c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 50
+  ExplosionRadius: 2.5
+  ExplosionDamage: 20
