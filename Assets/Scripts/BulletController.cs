@@ -19,13 +19,13 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag(GameTag.Enemy))
+        if (GameTag.IsWorldItem(other.gameObject))
         {
-            other.gameObject.GetComponent<EnemyController>().Shot(Damage);
-        }
+            if (other.gameObject.CompareTag(GameTag.Enemy))
+            {
+                other.gameObject.GetComponent<EnemyController>().Shot(Damage);
+            }
 
-        if (!GameTag.IsPlayer(other.gameObject))
-        {
             Destroy(gameObject);
         }
     }

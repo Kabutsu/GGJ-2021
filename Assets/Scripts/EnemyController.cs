@@ -11,29 +11,20 @@ public class EnemyController : MonoBehaviour
 
     private Transform goal;
     private NavMeshAgent agent;
+    private EnemyManager enemyManager;
     private float cooldown;
 
     void Start()
     {
         goal = FindObjectsOfType<PlayerManager>().FirstOrDefault().gameObject.transform;
         agent = GetComponent<NavMeshAgent>();
+        enemyManager = FindObjectOfType<EnemyManager>();
         cooldown = 1f / (RateOfAttack * 2f);
     }
 
     void Update()
     {
         agent.destination = goal.position;
-    }
-
-    public void Shot(float damage)
-    {
-        Health -= damage;
-        if (Health <= 0) Die();
-    }
-
-    private void Die()
-    {
-        Destroy(gameObject);
     }
 
     private void OnTriggerStay(Collider other)
@@ -48,6 +39,18 @@ public class EnemyController : MonoBehaviour
                 cooldown = 1f / RateOfAttack;
             }
         }
+    }
+
+    public void Shot(float damage)
+    {
+        Health -= damage;
+        if (Health <= 0) Die();
+    }
+
+    private void Die()
+    {
+        enemyManager.DeRegister();
+        Destroy(gameObject);
     }
 
     private void Attack(PlayerManager player)

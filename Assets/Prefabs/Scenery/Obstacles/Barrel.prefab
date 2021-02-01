@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6090305680995144928}
   - component: {fileID: 7169686131803826545}
   - component: {fileID: 2389923266599588637}
+  - component: {fileID: -2013183961245648965}
   m_Layer: 0
   m_Name: Barrel
   m_TagString: Scenery
@@ -91,6 +92,20 @@ CapsuleCollider:
   m_GameObject: {fileID: 7803467458934008031}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!136 &-2013183961245648965
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7803467458934008031}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.65
   m_Height: 3

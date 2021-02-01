@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4630409621226461299}
   - component: {fileID: 9119857053728139155}
   - component: {fileID: 1004499580899237958}
+  - component: {fileID: -3685760645027714807}
   m_Layer: 0
   m_Name: BigBox
   m_TagString: Scenery
@@ -91,6 +92,19 @@ BoxCollider:
   m_GameObject: {fileID: 3757686975266851668}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &-3685760645027714807
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3757686975266851668}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}

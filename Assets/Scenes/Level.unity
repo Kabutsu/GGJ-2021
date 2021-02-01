@@ -353,6 +353,7 @@ GameObject:
   - component: {fileID: 134937492}
   - component: {fileID: 134937491}
   - component: {fileID: 134937490}
+  - component: {fileID: 134937493}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -408,6 +409,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &134937493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134937489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b70522fb2e6606549a20ec5aa4bba866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxEnemies: 5
 --- !u!4 &156824561 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5385465403992161687, guid: f970a84d76177cf469aca4a027ef4493, type: 3}
