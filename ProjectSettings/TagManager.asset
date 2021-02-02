@@ -8,6 +8,7 @@ TagManager:
   - PlayerItem
   - Scenery
   - Projectile
+  - PickUp
   layers:
   - Default
   - TransparentFX

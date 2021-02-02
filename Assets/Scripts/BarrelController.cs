@@ -28,7 +28,7 @@ public class BarrelController : MonoBehaviour
     {
         gameObject.GetComponent<MeshRenderer>().enabled = false;
 
-        float explosionRadius = Random.Range(MinExplosionRadius, MaxExplosionRadius);
+        float explosionRadius = Random.Range(MinExplosionRadius, MaxExplosionRadius) + 1f;
 
         var explosionLight = gameObject.AddComponent<Light>();
         explosionLight.color = new Color(1, 0.6f, 0.39f);

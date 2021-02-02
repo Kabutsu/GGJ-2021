@@ -11,6 +11,7 @@ namespace Assets.Scripts.Helpers
         public const string MainCamera = "MainCamera";
         public const string Environment = "Scenery";
         public const string Projectile = "Projectile";
+        public const string PickUp = "PickUp";
 
         public static bool IsPlayer(GameObject gameObject)
             => gameObject.CompareTag(Player) || gameObject.CompareTag(PlayerItem);

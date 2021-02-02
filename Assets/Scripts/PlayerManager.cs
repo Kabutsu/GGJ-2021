@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour
     private Slider healthSlider;
     private Image healthSliderImage;
     private float health;
+    private int keys = 0;
 
     void Start()
     {
@@ -28,6 +29,18 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void PickUp(PickUpType pickup)
+    {
+        switch(pickup)
+        {
+            case PickUpType.Key:
+                keys++;
+                break;
+            default:
+                break;
+        }
     }
 
     public void WasHit(float Damage)
