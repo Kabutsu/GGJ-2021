@@ -8,8 +8,12 @@ public class PlayerManager : MonoBehaviour
 {
     public float MaxHealth = 50f;
 
+    [SerializeField]
+    private const string managerName = GameTag.Player;
+
     private Slider healthSlider;
     private Image healthSliderImage;
+    private GameManager gameManager;
     private float health;
 
     void Start()
@@ -23,11 +27,26 @@ public class PlayerManager : MonoBehaviour
 
         health = MaxHealth;
         healthSlider.value = health / MaxHealth;
+
+        gameManager = GameObject.FindGameObjectWithTag(GameTag.GameController).GetComponent<GameManager>();
+        gameManager.Register(managerName, gameObject);
     }
 
     void Update()
     {
         
+    }
+
+    public void PickUp(PickUpType pickup)
+    {
+        switch(pickup)
+        {
+            case PickUpType.Key:
+                gameManager.AddInventory("Key");
+                break;
+            default:
+                break;
+        }
     }
 
     public void WasHit(float Damage)

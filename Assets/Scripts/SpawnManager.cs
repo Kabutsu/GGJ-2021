@@ -8,6 +8,7 @@ public class SpawnManager : MonoBehaviour
     public float MaxSpawnTime = 7.5f;
     public bool IsPlayerSpawn = false;
 
+    private EnemyManager enemyManager;
     private float cooldown;
     private bool canCooldown;
 
@@ -22,6 +23,7 @@ public class SpawnManager : MonoBehaviour
         }
 
         canCooldown = !IsPlayerSpawn;
+        enemyManager = FindObjectOfType<EnemyManager>();
     }
 
 
@@ -31,11 +33,7 @@ public class SpawnManager : MonoBehaviour
         {
             cooldown -= Time.deltaTime;
 
-            if (cooldown <= 0f)
-            {
-                Instantiate(SpawnObject, transform.position, transform.rotation);
-                ResetCooldown();
-            }
+            if (cooldown <= 0f) Spawn();
         }
     }
 
@@ -58,5 +56,15 @@ public class SpawnManager : MonoBehaviour
     private void ResetCooldown()
     {
         cooldown = Random.Range(MinSpawnTime, MaxSpawnTime);
+    }
+
+    private void Spawn()
+    {
+        if (enemyManager.Register())
+        {
+            Instantiate(SpawnObject, transform.position, transform.rotation);
+        }
+
+        ResetCooldown();
     }
 }

@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - PlayerItem
+  - Scenery
+  - Projectile
+  - PickUp
   layers:
   - Default
   - TransparentFX
