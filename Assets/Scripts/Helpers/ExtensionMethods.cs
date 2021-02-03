@@ -28,4 +28,15 @@ public static class ExtensionMethods
             t >= m ? a : b,
             (t >= m ? t - m : t) * (1 / (t >= m ? 1 - m : m)));
     }
+
+    public static string GetName(this PickUpType pickUpType)
+    {
+        switch (pickUpType)
+        {
+            case PickUpType.Key:
+                return "Key";
+            default:
+                return pickUpType.ToString();
+        }
+    }
 }

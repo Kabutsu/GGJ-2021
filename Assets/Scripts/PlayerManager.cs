@@ -8,10 +8,13 @@ public class PlayerManager : MonoBehaviour
 {
     public float MaxHealth = 50f;
 
+    [SerializeField]
+    private const string managerName = GameTag.Player;
+
     private Slider healthSlider;
     private Image healthSliderImage;
+    private GameManager gameManager;
     private float health;
-    private int keys = 0;
 
     void Start()
     {
@@ -24,6 +27,9 @@ public class PlayerManager : MonoBehaviour
 
         health = MaxHealth;
         healthSlider.value = health / MaxHealth;
+
+        gameManager = GameObject.FindGameObjectWithTag(GameTag.GameController).GetComponent<GameManager>();
+        gameManager.Register(managerName, gameObject);
     }
 
     void Update()
@@ -36,7 +42,7 @@ public class PlayerManager : MonoBehaviour
         switch(pickup)
         {
             case PickUpType.Key:
-                keys++;
+                gameManager.AddInventory("Key");
                 break;
             default:
                 break;
