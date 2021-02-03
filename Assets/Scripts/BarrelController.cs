@@ -31,7 +31,7 @@ public class BarrelController : MonoBehaviour
         float explosionRadius = Random.Range(MinExplosionRadius, MaxExplosionRadius) + 1f;
 
         var explosionLight = gameObject.AddComponent<Light>();
-        explosionLight.color = new Color(1, 0.6f, 0.39f);
+        explosionLight.color = new Color(1f, 0.6f, 0.39f);
         explosionLight.range = explosionRadius;
         explosionLight.intensity = 0f;
 

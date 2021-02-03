@@ -19,6 +19,16 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void Victory()
+    {
+        Debug.Log("Victory!");
+    }
+
+    public void GameOver()
+    {
+
+    }
+
     public void Register(string name, GameObject gameObject)
     {
         registeredObjects.Add(name, gameObject);
