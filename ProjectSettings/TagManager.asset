@@ -9,6 +9,8 @@ TagManager:
   - Scenery
   - Projectile
   - PickUp
+  - SF_Door
+  - Room
   layers:
   - Default
   - TransparentFX
