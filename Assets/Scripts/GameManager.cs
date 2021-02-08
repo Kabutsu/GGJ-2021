@@ -1,16 +1,63 @@
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Helpers;
 
 public class GameManager : MonoBehaviour
 {
+    public List<Transform> TopRoomPositions;
+    public List<Transform> MiddleRoomPositions;
+    public List<Transform> BottomRoomPositions;
+    public List<GameObject> RoomPrefabs;
+
+    private string[,] pathDirection = new string[3, 3]
+    {
+        { "NoneRight", "LeftRight", "LeftBottom" },
+        { "", "RightBottom", "TopLeft" },
+        { "", "TopRight", "LeftNone" }
+    };
+
     private readonly Dictionary<string, GameObject> registeredObjects = new Dictionary<string, GameObject>();
     private readonly Dictionary<string, int> playerInventory = new Dictionary<string, int>();
     private readonly Dictionary<string, int> itemQuantitiesInWorld = new Dictionary<string, int>();
 
     void Start()
     {
-        
+        for (int i = 0; i < 3; i++)
+        {
+            var roomName = pathDirection[0, i];
+
+            if (!string.IsNullOrWhiteSpace(roomName))
+            {
+                var roomPrefab = RoomPrefabs.FirstOrDefault(x => x.name.EndsWith(roomName));
+                var roomPosition = TopRoomPositions[i];
+                Instantiate(roomPrefab, roomPosition.position, roomPosition.rotation);
+            }
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            var roomName = pathDirection[1, i];
+
+            if (!string.IsNullOrWhiteSpace(roomName))
+            {
+                var roomPrefab = RoomPrefabs.FirstOrDefault(x => x.name.EndsWith(roomName));
+                var roomPosition = MiddleRoomPositions[i];
+                Instantiate(roomPrefab, roomPosition.position, roomPosition.rotation);
+            }
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            var roomName = pathDirection[2, i];
+
+            if (!string.IsNullOrWhiteSpace(roomName))
+            {
+                var roomPrefab = RoomPrefabs.FirstOrDefault(x => x.name.EndsWith(roomName));
+                var roomPosition = BottomRoomPositions[i];
+                Instantiate(roomPrefab, roomPosition.position, roomPosition.rotation);
+            }
+        }
     }
 
     
