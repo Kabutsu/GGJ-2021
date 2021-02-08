@@ -14,6 +14,7 @@ namespace Assets.Scripts.Helpers
         public const string Projectile = "Projectile";
         public const string PickUp = "PickUp";
         public const string Door = "SF_Door";
+        public const string Room = "Room";
 
         public static bool IsPlayer(GameObject gameObject)
             => gameObject.CompareTag(Player) || gameObject.CompareTag(PlayerItem);

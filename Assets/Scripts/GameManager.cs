@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using Assets.Scripts.Helpers;
 
 public class GameManager : MonoBehaviour
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour
     public List<Transform> MiddleRoomPositions;
     public List<Transform> BottomRoomPositions;
     public List<GameObject> RoomPrefabs;
+
+    private NavMeshSurface[] surfaces;
 
     private string[,] pathDirection = new string[3, 3]
     {
@@ -57,6 +60,16 @@ public class GameManager : MonoBehaviour
                 var roomPosition = BottomRoomPositions[i];
                 Instantiate(roomPrefab, roomPosition.position, roomPosition.rotation);
             }
+        }
+
+        surfaces = GameObject
+            .FindGameObjectsWithTag(GameTag.Room)
+            .Select(x => x.GetComponent<NavMeshSurface>())
+            .ToArray();
+
+        for (int i = 0; i < surfaces.Length; i++)
+        {
+            surfaces[i].BuildNavMesh();
         }
     }
 
