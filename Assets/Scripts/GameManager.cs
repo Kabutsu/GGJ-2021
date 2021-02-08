@@ -13,11 +13,11 @@ public class GameManager : MonoBehaviour
 
     private NavMeshSurface[] surfaces;
 
-    private string[,] pathDirection = new string[3, 3]
+    private KeyValuePair<string, string>[,] pathDirection = new KeyValuePair<string, string>[3, 3]
     {
-        { "NoneRight", "LeftRight", "LeftBottom" },
-        { "", "RightBottom", "TopLeft" },
-        { "", "TopRight", "LeftNone" }
+        { new KeyValuePair<string, string>("", ""), new KeyValuePair<string, string>("", ""), new KeyValuePair<string, string>("", "") },
+        { new KeyValuePair<string, string>("", ""), new KeyValuePair<string, string>("", ""), new KeyValuePair<string, string>("", "") },
+        { new KeyValuePair<string, string>("", ""), new KeyValuePair<string, string>("", ""), new KeyValuePair<string, string>("", "") }
     };
 
     private readonly Dictionary<string, GameObject> registeredObjects = new Dictionary<string, GameObject>();
@@ -26,13 +26,34 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        var row = 0;
+        var col = Random.Range(0, 3);
+        var prevRoom = pathDirection[row, col];
+
+        for (int i = 0; i < 9; i++)
+        {
+            var possibleNextRooms = GetPathOptions(prevRoom, row, col);
+            prevRoom = possibleNextRooms[possibleNextRooms.Count == 1 ? 0 : Random.Range(0, possibleNextRooms.Count)];
+
+            Debug.Log($"{prevRoom.Key}{prevRoom.Value} at [{row}, {col}]");
+
+            pathDirection[row, col] = prevRoom;
+
+            if (prevRoom.Value == "Left") col--;
+            if (prevRoom.Value == "Right") col++;
+
+            if (prevRoom.Value == "Bottom") row++;
+
+            if (prevRoom.Value == "None") break;
+        }
+
         for (int i = 0; i < 3; i++)
         {
             var roomName = pathDirection[0, i];
 
-            if (!string.IsNullOrWhiteSpace(roomName))
+            if (!string.IsNullOrWhiteSpace(roomName.Key))
             {
-                var roomPrefab = RoomPrefabs.FirstOrDefault(x => x.name.EndsWith(roomName));
+                var roomPrefab = RoomPrefabs.FirstOrDefault(x => x.name.EndsWith($"{roomName.Key}{roomName.Value}"));
                 var roomPosition = TopRoomPositions[i];
                 Instantiate(roomPrefab, roomPosition.position, roomPosition.rotation);
             }
@@ -42,9 +63,9 @@ public class GameManager : MonoBehaviour
         {
             var roomName = pathDirection[1, i];
 
-            if (!string.IsNullOrWhiteSpace(roomName))
+            if (!string.IsNullOrWhiteSpace(roomName.Key))
             {
-                var roomPrefab = RoomPrefabs.FirstOrDefault(x => x.name.EndsWith(roomName));
+                var roomPrefab = RoomPrefabs.FirstOrDefault(x => x.name.EndsWith($"{roomName.Key}{roomName.Value}"));
                 var roomPosition = MiddleRoomPositions[i];
                 Instantiate(roomPrefab, roomPosition.position, roomPosition.rotation);
             }
@@ -54,9 +75,9 @@ public class GameManager : MonoBehaviour
         {
             var roomName = pathDirection[2, i];
 
-            if (!string.IsNullOrWhiteSpace(roomName))
+            if (!string.IsNullOrWhiteSpace(roomName.Key))
             {
-                var roomPrefab = RoomPrefabs.FirstOrDefault(x => x.name.EndsWith(roomName));
+                var roomPrefab = RoomPrefabs.FirstOrDefault(x => x.name.EndsWith($"{roomName.Key}{roomName.Value}"));
                 var roomPosition = BottomRoomPositions[i];
                 Instantiate(roomPrefab, roomPosition.position, roomPosition.rotation);
             }
@@ -73,10 +94,40 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
-    void Update()
+    private List<KeyValuePair<string, string>> GetPathOptions(KeyValuePair<string, string> prev, int row, int col)
     {
-        
+        string inDirection = OppositeDirection(prev.Value);
+
+        var canGoRight = inDirection != "Right" && col < 2 && string.IsNullOrWhiteSpace(pathDirection[row, col + 1].Key);
+        var canGoLeft = inDirection != "Left" && col > 0 && string.IsNullOrWhiteSpace(pathDirection[row, col - 1].Key);
+        var canGoDown = row < 2;
+        var canGoNone = row == 2;
+
+        var possibleOptions = new List<KeyValuePair<string, string>>();
+
+        if (canGoRight) possibleOptions.Add(new KeyValuePair<string, string>(inDirection, "Right"));
+        if (canGoLeft) possibleOptions.Add(new KeyValuePair<string, string>(inDirection, "Left"));
+        if (canGoDown) possibleOptions.Add(new KeyValuePair<string, string>(inDirection, "Bottom"));
+        if (canGoNone) possibleOptions.Add(new KeyValuePair<string, string>(inDirection, "None"));
+
+        return possibleOptions;
+    }
+
+    private string OppositeDirection(string? direction)
+    {
+        switch (direction)
+        {
+            case "Left":
+                return "Right";
+            case "Right":
+                return "Left";
+            case "Top":
+                return "Bottom";
+            case "Bottom":
+                return "Top";
+            default:
+                return "None";
+        }
     }
 
     public void Victory()
