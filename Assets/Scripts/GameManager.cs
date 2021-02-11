@@ -140,6 +140,11 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void OnQuit()
+    {
+        Application.Quit();
+    }
+
     public void Register(string name, GameObject gameObject)
     {
         registeredObjects.Add(name, gameObject);
